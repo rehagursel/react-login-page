@@ -34,8 +34,8 @@
 
 .control input:focus {
   outline: none;
-  border-color: #4f005f;
-  background: #f6dbfc;
+  border-color: #7b98cec4;
+  background: #aec1e44b;
 }
 
 .control.invalid input {
