@@ -24,15 +24,12 @@ const passwordReducer = (state, action) => {
   return { value: "", isValid: false };
 };
 
-
-
 const Login = (props) => {
-
-
-  /*   const [enteredEmail, setEnteredEmail] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState(); */
-  /*  const [enteredPassword, setEnteredPassword] = useState("");
+/*   const [enteredEmail, setEnteredEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState();
+  const [enteredPassword, setEnteredPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(); */
+
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -45,27 +42,36 @@ const Login = (props) => {
     isValid: false,
   });
 
+  const {isValid: emailIsValid} = emailState;
+  const {isValid: passwordIsValid} = passwordState;
+
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log("test");
       //the func runs fistly only at first time and than runs after cleanUp func.
-      setFormIsValid(
-        emailState.isValid && passwordState.isValid
-      );
+      setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     return () => {
       //cleanUp function
       clearTimeout(identifier);
     };
-  }, [emailState, passwordState]);
+  }, [emailIsValid, passwordIsValid]);
+  
+
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
+
+    // setFormIsValid(
+    //   event.target.value.includes('@') && passwordState.isValid
+    // );
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
+    // setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
   };
 
   const validateEmailHandler = () => {
