@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const AuthContext = React.createContext({
   isLoggedIn: false,
-  onLogout: () => {},    //dummy function for IDE auto complation
+  onLogout: () => {},    //dummy functions for IDE auto complation
   onLogin: (email, password) => {}
 });
 
